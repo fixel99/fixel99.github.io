@@ -205,6 +205,18 @@
 					if (!$body.hasClass('is-article-visible'))
 						return;
 
+				// Pause all YouTube videos
+				$('iframe[src*="youtube.com"]').each(function() {
+					this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+				});
+			
+				// Pause all Vidstack media players
+				document.querySelectorAll('media-player').forEach(player => {
+					if (!player.paused) {
+						player.pause();
+					}
+				});
+
 				// Add state?
 					if (typeof addState != 'undefined'
 					&&	addState === true)
