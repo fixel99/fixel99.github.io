@@ -235,7 +235,7 @@
 					}
 				});
 
-				pauseAllMedia()
+				//pauseAllMedia();
 
 				// Add state?
 					if (typeof addState != 'undefined'
