@@ -78,6 +78,24 @@
 					if ($article.length == 0)
 						return;
 
+
+				// **Pause all media before switching articles**
+				function pauseAllMedia() {
+					// Pause all YouTube iframes
+					$('iframe[src*="youtube.com"]').each(function() {
+						this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+					});
+			
+					// Pause all Vidstack media elements
+					document.querySelectorAll('media-player').forEach(player => {
+						if (player.paused === false) {
+							player.pause();
+						}
+					});
+				}
+			
+				pauseAllMedia(); // Call the function before switching
+
 				// Handle lock.
 
 					// Already locked? Speed through "show" steps w/o delays.
